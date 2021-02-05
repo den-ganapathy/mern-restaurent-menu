@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  body {
+    font-family: sans-serif;
+    list-style-type: none;
+    background-color: rgb(219, 221, 223);
+
+    .footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 2rem;
+      padding-bottom: 0.5rem;
+      background-color: white;
+      border-top-left-radius: 50%;
+      border-top-right-radius: 50%;
+
+      P {
+        color: rgb(18, 33, 100);
+        font-weight: bold;
+      }
+    }
+  }
+}
