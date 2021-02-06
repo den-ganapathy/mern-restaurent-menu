@@ -6,20 +6,23 @@
     font-family: sans-serif;
     list-style-type: none;
     background-color: rgb(219, 221, 223);
+    margin-bottom: 3rem;
 
     .footer {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding-top: 2rem;
-      padding-bottom: 0.5rem;
+      height: 3rem;
       background-color: white;
       border-top-left-radius: 50%;
       border-top-right-radius: 50%;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
 
       P {
         color: rgb(18, 33, 100);
-        font-weight: bold;
+        // font-weight: bold;
       }
     }
   }

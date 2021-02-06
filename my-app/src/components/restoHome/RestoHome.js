@@ -1,5 +1,6 @@
 import React from "react";
 import { FaStar, FaClock, FaMapMarkerAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import homeData from "./homeData";
 const RestoHome = () => {
   return (
@@ -11,6 +12,7 @@ const RestoHome = () => {
           const { id, name, ratings, img, open, close, location } = data;
           return (
             <div
+              key={id}
               className="home__items__container"
               onClick={() => console.log("clicked")}
             >
@@ -45,6 +47,16 @@ const RestoHome = () => {
                   </p>
                   Closes at : {close}:00
                 </div>
+              </div>{" "}
+              <div className="home__items__container--btn">
+                <Link
+                  to={{
+                    pathname: `/menu/${id}`,
+                    state: { restoId: { id } },
+                  }}
+                >
+                  <button>View Menu</button>
+                </Link>{" "}
               </div>
             </div>
           );
