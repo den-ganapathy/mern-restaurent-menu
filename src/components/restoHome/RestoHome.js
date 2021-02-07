@@ -26,7 +26,7 @@ const RestoHome = () => {
     console.log(serachContainer.current.value);
     const search = serachContainer.current.value;
     axios
-      .get("http://localhost:8080/api/searchRestaurant", {
+      .get("https://restaurant-menu-apis.herokuapp.com/api/searchRestaurant", {
         params: {
           search: search,
         },
