@@ -1,24 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import items from "./menuData.js";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const RestoMenu = () => {
   let { id } = useParams();
-  const filterData = items.filter((item) => item.fid == id);
+  const [menudata, setMenudata] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [filterData, setFilterdata] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`https://restaurant-menu-apis.herokuapp.com/api/menu/${id}`)
+      .then((res) => {
+        const items = res.data;
+        const filterData = items.filter((item) => item.rid == id);
+        console.log(res.data);
+        const allCategories = [
+          "all",
+          ...new Set(filterData.map((item) => item.category)),
+        ];
+        setMenudata(res.data);
+        setCategories(allCategories);
+        setFilterdata(filterData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
-  const allCategories = [
-    "all",
-    ...new Set(filterData.map((item) => item.category)),
-  ];
-  const [menudata, setMenumenudata] = useState(filterData);
-  const [categories, setCategories] = useState(allCategories);
   const filtermenudata = (category) => {
+    console.log(filterData, category);
     if (category == "all") {
-      setMenumenudata(filterData);
+      setMenudata(filterData);
       return;
     }
     const newmenudata = filterData.filter((item) => item.category == category);
-    setMenumenudata(newmenudata);
+    setMenudata(newmenudata);
   };
   return (
     <div className="menu">
