@@ -25,9 +25,34 @@
         margin: 0.5rem auto;
         margin-bottom: 1rem;
       }
+      &__searchbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        input {
+          height: 1.75rem;
+        }
+        button {
+          color: white;
+          background-color: rgb(9, 60, 94);
+          padding: 0.1rem;
+          border: 2px solid white;
+          height: 1.6rem;
+          cursor: pointer;
+        }
+
+        p:hover {
+          color: rgb(9, 60, 94);
+          background-color: white;
+          border: 2px solid rgb(13, 82, 128);
+        }
+      }
       &__items {
         &__container {
-          background-color: #fff;
+          background-color: rgb(255, 255, 255);
           width: 95vw;
           height: auto;
           border-radius: 0.5rem;
@@ -146,6 +171,31 @@
           background-color: rgb(13, 82, 128);
           margin: 1rem auto;
           margin-bottom: 2rem;
+        }
+        &__searchbar {
+          margin-bottom: 3rem;
+          form {
+            display: flex;
+            input {
+              height: 1.8rem;
+            }
+            button {
+              color: white;
+              background-color: rgb(9, 60, 94);
+              padding: 0.2rem;
+              // margin: 0.2rem;
+              border: 2px solid white;
+              height: 1.8rem;
+              cursor: pointer;
+              font-size: 1.2rem;
+              align-items: center;
+            }
+            button:hover {
+              color: rgb(9, 60, 94);
+              background-color: white;
+              border: 2px solid rgb(9, 60, 94);
+            }
+          }
         }
         &__items {
           display: flex;

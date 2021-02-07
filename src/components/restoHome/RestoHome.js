@@ -1,27 +1,67 @@
-import React, { useState, useEffect } from "react";
-import { FaStar, FaClock, FaMapMarkerAlt } from "react-icons/fa";
+import React, { useState, useEffect, useRef } from "react";
+import { FaStar, FaClock, FaMapMarkerAlt, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
-// import homeData from "./homeData";
+import Loading from "../../utils/loader";
 import axios from "axios";
 const RestoHome = () => {
   const [data, setData] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
+    setLoading(true);
     axios
       .get("https://restaurant-menu-apis.herokuapp.com/api/restaurant")
       .then((res) => {
         console.log(res.data);
+        setLoading(false);
         setData(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-  console.log(data);
+
+  const serachContainer = useRef(null);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(serachContainer.current.value);
+    const search = serachContainer.current.value;
+    axios
+      .get("http://localhost:8080/api/searchRestaurant", {
+        params: {
+          search: search,
+        },
+      })
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  if (loading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
   return (
     <div className="home">
       <div className="home__header">Restaurants</div>
       <div className="home__underline"></div>
+      <div className="home__searchbar">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="search..."
+            ref={serachContainer}
+          ></input>
+          <button type="submit">
+            <FaSearch />
+          </button>
+        </form>
+      </div>
       <div className="home__items">
         {data &&
           data.map((data) => {

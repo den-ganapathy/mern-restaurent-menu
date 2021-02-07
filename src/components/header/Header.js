@@ -10,12 +10,12 @@ class Header extends Component {
           <a className="header__details--logo" href="/">
             <img src={logo.default}></img>
           </a>
-          <a className="header__details--info" href="/">
+          {/* <a className="header__details--info" href="/">
             Go to Menu{" "}
             <p>
               <FaArrowRight />
             </p>
-          </a>
+          </a> */}
         </div>
       </div>
     );

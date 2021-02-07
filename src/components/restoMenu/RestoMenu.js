@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import items from "./menuData.js";
+import Loading from "../../utils/loader";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -8,17 +8,20 @@ const RestoMenu = () => {
   const [menudata, setMenudata] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filterData, setFilterdata] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`https://restaurant-menu-apis.herokuapp.com/api/menu/${id}`)
       .then((res) => {
         const items = res.data;
         const filterData = items.filter((item) => item.rid == id);
-        console.log(res.data);
+
         const allCategories = [
           "all",
           ...new Set(filterData.map((item) => item.category)),
         ];
+        setLoading(false);
         setMenudata(res.data);
         setCategories(allCategories);
         setFilterdata(filterData);
@@ -37,6 +40,14 @@ const RestoMenu = () => {
     const newmenudata = filterData.filter((item) => item.category == category);
     setMenudata(newmenudata);
   };
+
+  if (loading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
   return (
     <div className="menu">
       <h1 className="menu__header">Menu</h1>
