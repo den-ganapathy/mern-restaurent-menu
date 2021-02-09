@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Loading from "../../utils/loader";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import { FaArrowLeft } from "react-icons/fa";
 
 const RestoMenu = () => {
   let { id } = useParams();
@@ -50,7 +51,14 @@ const RestoMenu = () => {
   }
   return (
     <div className="menu">
-      <h1 className="menu__header">Menu</h1>
+      <h1 className="menu__header">
+        <p>
+          <Link to={{ pathname: `/` }}>
+            <FaArrowLeft style={{ color: "rgb(13, 82, 128)" }} />
+          </Link>
+        </p>
+        <span>Menu</span>
+      </h1>
       <div className="menu__underline"></div>
       <div className="menu__items">
         {categories.map((category, index) => {

@@ -12,10 +12,18 @@
       flex-direction: column;
       margin: 0px auto;
       &__header {
+        display: flex;
         font-size: 1.5rem;
         padding: 1rem;
         text-align: center;
         padding-bottom: 0rem;
+        p {
+          flex: 0 0 10%;
+          color: rgb(16, 96, 161);
+        }
+        span {
+          flex: 0 0 80%;
+        }
       }
       &__underline {
         width: 30%;
